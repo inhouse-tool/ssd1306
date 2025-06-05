@@ -125,13 +125,8 @@ Update( void )
 	struct	timespec	ts;
 	clock_gettime( CLOCK_REALTIME, &ts );
 	struct	tm	lt = *localtime( &ts.tv_sec );
-	if	( lt.tm_sec != ( secLast+1 ) % 60 ){
+	if	( lt.tm_sec != ( secLast+1 ) % 60 )
 		SetTimer();
-		sprintf( buf, "%02d:%02d:%02d %02d/%02d",
-				lt.tm_hour, lt.tm_min, lt.tm_sec,
-				lt.tm_mon+1, lt.tm_mday );
-		ssdPuts( fdSSD, 0, 3, buf );
-	}
 
 	secLast = lt.tm_sec;
 	sprintf( buf, "%02d:%02d:%02d",
